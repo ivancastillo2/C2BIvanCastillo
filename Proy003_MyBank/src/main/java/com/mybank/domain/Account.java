@@ -5,7 +5,7 @@ package com.mybank.domain;
  * De una cuenta bancaria se puede retirar dinero
  * y depositar dinero.
  * También se puede comprobar el saldo actual de la cuenta.
- * @author Iván
+ * @author Iván Castillo
  *
  */
 public class Account {

@@ -2,7 +2,7 @@ package com.mybank.domain;
 
 /**
  * Clase que representa un cliente que puede tener una cuena bancaria.
- * @author Iván
+ * @author Iván Castillo
  *
  */
 public class Customer {
