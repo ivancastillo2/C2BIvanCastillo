@@ -17,6 +17,15 @@ public class EjemploArrayMultidemensional {
 			System.out.println();
 		}
 		
+		int[][] notas = new int[3][];
+		notas[0] = new int[2];
+		notas[1] = new int [6];
+		notas[1][2] = 7;
+		
+		
+		int[][][] grande = new int[3][][];
+		
+		grande[0] = new int[2][2];
 	}
 	
 }

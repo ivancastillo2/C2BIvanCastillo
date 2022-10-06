@@ -16,6 +16,15 @@ public class Refresco {
 	private boolean agotado;
 	private int stock;
 	
+	/**
+	 * Contructor de la clase refresco.
+	 * 
+	 * @param sabor Sabor del refresco
+	 * @param cl Cl del refresco
+	 * @param precio Precio del refresco
+	 * @param stock Stock del refresco
+	 * @throws RefrescoException Excepcion que sata si no se cumle alguna vaidacion de os campos
+	 */
 	public Refresco(String sabor, int cl, int precio, int stock) throws RefrescoException {
 		super();
 		if (sabor != null) {

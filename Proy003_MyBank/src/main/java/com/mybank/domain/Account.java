@@ -46,4 +46,11 @@ public class Account {
 		balance -= amt;
 		return true;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Account [balance=" + balance + "]";
+	}
+	
 }
