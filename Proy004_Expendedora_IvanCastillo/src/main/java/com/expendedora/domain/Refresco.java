@@ -2,6 +2,13 @@ package com.expendedora.domain;
 
 import com.expendedora.exception.RefrescoException;
 
+/**
+ * Clase que representa un refresco para dispensar
+ * en una máquina expendedora.
+ * 
+ * @author Iván Castillo
+ *
+ */
 public class Refresco {
 	private String sabor;
 	private int cl;
@@ -37,32 +44,66 @@ public class Refresco {
 		
 	}
 	
+	/**
+	 * Método que devuelve el sabor de un refresco.
+	 * 
+	 * @return Sabor del refresco
+	 */
 	public String getSabor() {
 		return sabor;
 	}
 	
+	/**
+	 * Método que devuelve los centilitros de un refresco
+	 * 
+	 * @return Cantidad de centilitros de un refresco
+	 */
 	public int getCl() {
 		return cl;
 	}
 	
+	/**
+	 * Método que devuelve el precio de un refresco.
+	 * 
+	 * @return Precio de un refresco
+	 */
 	public int getPrecio() {
 		return precio;
 	}
 
+	/**
+	 * Método para saber si un refresco esta agotado.
+	 * 
+	 * @return True si el refresco esta agotado. False si el refresco no esta agotado
+	 */
 	public boolean isAgotado() {
 		return agotado;
 	}
 
-	public void setAgotado(boolean agotado) {
-		this.agotado = agotado;
-	}
-
+	/**
+	 * Método que devuelve el stock de un refresco.
+	 * 
+	 * @return Stock de un refresco
+	 */
 	public int getStock() {
 		return stock;
 	}
 
-	public void setStock(int stock) {
-		this.stock = stock;
+	/**
+	 * Método que sirve para cambiar de un refresco.
+	 * 
+	 * @param stock El stock que quieres asignarle al refresco
+	 * @throws RefrescoException Esta excepcion se lanzara cuando el stock que introduzcas sea negativo
+	 */
+	public void setStock(int stock) throws RefrescoException {
+		if (stock >= 0) {
+			this.agotado = (stock == 0)
+					? true
+					: false;
+			this.stock = stock;
+		} else {
+			throw new RefrescoException("El stock del refresco no puede ser negativo");
+		}
 	}
 
 	@Override
