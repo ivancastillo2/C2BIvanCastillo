@@ -10,6 +10,7 @@ import com.expendedora.exception.RefrescoException;
  *
  */
 public class Refresco {
+	private int id;
 	private String sabor;
 	private int cl;
 	private int precio;
@@ -23,7 +24,7 @@ public class Refresco {
 	 * @param cl Cl del refresco
 	 * @param precio Precio del refresco
 	 * @param stock Stock del refresco
-	 * @throws RefrescoException Excepcion que sata si no se cumle alguna vaidacion de os campos
+	 * @throws RefrescoException Excepcion que sata si no se cumple alguna vaidacion de os campos
 	 */
 	public Refresco(String sabor, int cl, int precio, int stock) throws RefrescoException {
 		super();
@@ -43,14 +44,33 @@ public class Refresco {
 			throw new RefrescoException("El precio del refresco no puede ser 0 o negativo");
 		}
 		if (stock >= 0) {
-			this.agotado = (stock == 0)
-					? true
-					: false;
 			this.stock = stock;
+			comprobarStock();
 		} else {
 			throw new RefrescoException("El stock del refresco no puede ser negativo");
 		}
 		
+	}
+	
+	Refresco(int id) {
+		this.id = id;
+	}
+	
+	
+	/**
+	 * Método que devuelve el id de un refresco.
+	 * Si el id es 0 es que aun no ha sido asignado
+	 * automaticamente por la clase ListaRefresco.
+	 * 
+	 * @return Identificador del refresco
+	 */
+	public int getId() {
+		return id;
+	}
+	
+	
+	void setId(int id) {
+		this.id = id;
 	}
 	
 	/**
@@ -106,18 +126,36 @@ public class Refresco {
 	 */
 	public void setStock(int stock) throws RefrescoException {
 		if (stock >= 0) {
-			this.agotado = (stock == 0)
-					? true
-					: false;
 			this.stock = stock;
+			comprobarStock();
 		} else {
 			throw new RefrescoException("El stock del refresco no puede ser negativo");
 		}
 	}
+	
+	void incrementarStock() {
+		this.stock += 1;
+		comprobarStock();
+	}
+	
+	void disminuirStock() throws RefrescoException {
+		if (stock == 0) {
+			throw new RefrescoException("El stock del refresco no puede ser negativo");
+		}
+		this.stock -= 1;
+		comprobarStock();
+	}
+	
+	private void comprobarStock() {
+		this.agotado = (stock == 0)
+				? true
+				: false;
+	}
 
 	@Override
 	public String toString() {
-		return "Refresco [sabor=" + sabor + ", cl=" + cl + ", precio=" + precio + ", agotado=" + agotado + ", stock="
-				+ stock + "]";
+		return "Refresco [id=" + id + ", sabor=" + sabor + ", cl=" + cl + ", precio=" + precio + ", agotado=" + agotado
+				+ ", stock=" + stock + "]";
 	}
+
 }
