@@ -11,11 +11,15 @@ import java.util.Arrays;
  */
 public class Bank {
 
-	private Customer[] customers;
-	private int numberOfCustomers;
+	private static Customer[] customers;
+	private static int numberOfCustomers;
 	
-	public Bank() {
-		this.customers = new Customer[0];
+	static {
+		customers = new Customer[0];
+	}
+	
+	private Bank() {
+		
 	}
 	
 	/**
@@ -24,7 +28,7 @@ public class Bank {
 	 * @param f Nombre del cliente que quieres añadir
 	 * @param l Apellido del Cliente que quieres añadir
 	 */
-	public void addCustomer(String f, String l) {
+	public static void addCustomer(String f, String l) {
 		Customer c = new Customer(f, l);
 		numberOfCustomers++;
 		customers = Arrays.copyOf(customers, numberOfCustomers);
@@ -36,17 +40,18 @@ public class Bank {
 	 * 
 	 * @return Cantidad de clientes que tiene el banco
 	 */
-	public int getNumberOfCustomers() {
+	public static int getNumberOfCustomers() {
 		return numberOfCustomers;
 	}
 	
 	/**
-	 * Método que devuelve un cliente mediante un entero que es el índice del array de clientes.
+	 * Método que devuelve un cliente mediante un entero
+	 * que es el índice del array de clientes.
 	 * 
 	 * @param index Posición del cliente en el array de clientes
 	 * @return Cliente en la posición del array que le esecificas
 	 */
-	public Customer getCustomer(int index) {
+	public static Customer getCustomer(int index) {
 		return customers[index];
 	}
 }
