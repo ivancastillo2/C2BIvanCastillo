@@ -1,18 +1,21 @@
 package com.mybank.domain;
 
 /**
- * Clase que representa un cliente que puede tener una cuena bancaria.
+ * Clase que representa un cliente que puede tener
+ * varias cuentas bancarias de distintos tipos.
  * @author Iván Castillo
  *
  */
 public class Customer {
 	private String firstName;
 	private String lastName;
-	private Account account;
+	private Account[] accounts;
+	private int numberOfAccounts;
 	
 	public Customer(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.accounts = new Account[10];
 	}
 	
 	/**
@@ -25,31 +28,24 @@ public class Customer {
 	
 	/**
 	 * Método que devuelve el apellido de cliente.
-	 * @return Apelido del cliente.
+	 * @return Apellido del cliente.
 	 */
 	public String getLastName() {
 		return lastName;
 	}
 	
-	/**
-	 * Método que devuelve la cuenta bancaria del cliente.
-	 * @return Cuenta bancaria del cliente.
-	 */
-	public Account getAccount() {
-		return account;
+	public Account getAccount(int x) {
+		return accounts[x];
 	}
 	
-	/**
-	 * Método que le asigna una cuenta bancaria a un cliente.
-	 * @param account Cuenta bancaria que le quieres asignar al cliente.
-	 */
-	public void setAccount(Account account) {
-		this.account = account;
+	public int getNumberOfAccounts() {
+		return numberOfAccounts;
 	}
-
-	@Override
-	public String toString() {
-		return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", account=" + account + "]";
+	
+	public void addAccount(Account account) {
+		accounts[numberOfAccounts] = account;
+		numberOfAccounts++;
 	}
+	
 
 }
