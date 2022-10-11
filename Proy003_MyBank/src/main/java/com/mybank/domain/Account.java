@@ -9,9 +9,9 @@ package com.mybank.domain;
  *
  */
 public class Account {
-	private double balance;
+	protected double balance;
 	
-	public Account(double balance) {
+	protected Account(double balance) {
 		this.balance = balance;
 	}
 	

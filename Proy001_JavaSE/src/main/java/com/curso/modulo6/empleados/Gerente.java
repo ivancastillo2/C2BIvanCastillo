@@ -12,9 +12,13 @@ public class Gerente extends Empleado {
 		this.departamento = departamento;
 	}
 
+	public Gerente(String nombre, String departamento) {
+		super(nombre);
+		this.departamento = departamento;
+	}
+	
 	@Override
 	public String getDetails() {
-		// TODO Auto-generated method stub
 		return super.getDetails()
 				+ "\nDepartamento: " + departamento;
 	}

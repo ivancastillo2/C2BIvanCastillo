@@ -1,5 +1,6 @@
 package com.curso.modulo6.empleados;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 public class Prueba {
