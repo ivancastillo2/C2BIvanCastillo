@@ -14,12 +14,13 @@ public class CheckingAccount extends Account {
 	}
 
 	@Override
-	public boolean withdraw(double amt) {
+	public void withdraw(double amt) throws OverdraftException {
 		boolean result = true;
 		if (balance < amt) {
 			double overdraftNeeded = amt - balance;
 			if (overdraftAmount < overdraftNeeded) {
-				result = false;
+				double deficit = overdraftNeeded - overdraftAmount;
+				throw new OverdraftException("Estas intentando sacar más dinero del que tienes", deficit);
 			} else {
 				balance = 0.0;
 				overdraftAmount -= overdraftNeeded;
@@ -27,6 +28,9 @@ public class CheckingAccount extends Account {
 		} else {
 			balance -= amt;
 		}
-		return result;
+	}
+	
+	public double getOverdraftAmount() {
+		return overdraftAmount;
 	}
 }

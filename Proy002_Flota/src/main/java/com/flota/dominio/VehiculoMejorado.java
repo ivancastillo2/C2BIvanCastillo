@@ -8,7 +8,7 @@ package com.flota.dominio;
  * @author alumno
  * @version 1.0
  */
-public abstract class Vehiculo {
+public class VehiculoMejorado {
 	private double cargaMaxima;
 	private double cargaActual;
 	private String matricula;
@@ -21,7 +21,7 @@ public abstract class Vehiculo {
 //		this.numCajas = 0;
 //	}
 	
-	public Vehiculo(String matricula, double cargaMaxima) {
+	public VehiculoMejorado(String matricula, double cargaMaxima) {
 		if(matricula == null) {
 			throw new RuntimeException("La matrícula no puede estar vacia");
 		}
@@ -70,22 +70,22 @@ public abstract class Vehiculo {
 	 * Si el peso a cargar supera el máximo permitido
 	 * se lanzara una excepción
 	 * @param peso peso de la caja a cargar en kg
-	 * @throws RuntimeException el peso de la caja no es valido o supera la carga máxima permitida
+	 * @throws CargaException 
 	 */
-	public void cargarCaja(double peso) {
+	public void cargarCaja(double peso) throws CargaException {
 		if(peso < 0) {
-			throw new RuntimeException("El peso no es mayor de cero");
+			throw new CargaException("El peso no es mayor de cero", 0);
 		}
 		if ((peso + cargaActual) > cargaMaxima) {
-			throw new RuntimeException("No caben mas cajas");
+			double exceso = (peso + cargaActual) - cargaMaxima;
+			throw new CargaException("No caben mas cajas", exceso);
 		}
 		this.cargaActual += peso;
 		this.numCajas ++;
 	}
 	
-	public void cargarCaja(Caja caja) {
+	public void cargarCaja(Caja caja) throws CargaException {
 		cargarCaja(caja.getPeso());
 	}
 	
-	public abstract double consumoFuel();
 }

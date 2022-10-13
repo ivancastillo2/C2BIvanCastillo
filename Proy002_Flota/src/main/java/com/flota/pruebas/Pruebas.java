@@ -1,11 +1,11 @@
 package com.flota.pruebas;
 
 import com.flota.dominio.Caja;
-import com.flota.dominio.Vehiculo;
+import com.flota.dominio.Camion;
 
 public class Pruebas {
 	public static void main(String[] args) {
-		Vehiculo camion = new Vehiculo("4685FFF", 500.10);
+		Camion camion = new Camion("4685FFF", 500.10);
 		
 		try {
 			camion.setCargaMaxima(600);

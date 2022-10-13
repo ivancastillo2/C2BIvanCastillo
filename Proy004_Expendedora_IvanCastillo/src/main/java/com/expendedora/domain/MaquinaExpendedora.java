@@ -30,21 +30,23 @@ public class MaquinaExpendedora {
 		Refresco r = refrescos.getRefrescos()[idRefresco - 1];
 		int dineroDevolver = dinero - r.getPrecio();
 		if (r.getPrecio() > dinero) {
-			throw new RefrescoException("Has introducido mens dinero del que vale el refresco");
+			throw new RefrescoException("Has introducido menos dinero del que vale el refresco");
 		} else if  (dineroDevolver > cambio) {
 			throw new RefrescoException("No hay suficiente cambio en la máquina, introduzca menos dinero");
 		}
 		r.disminuirStock();
-		if (dinero > r.getPrecio()) {
-			this.cambio -= dinero - r.getPrecio();
-		} else {
-			this.cambio += dinero;
-		}
+		calcularCambio(dinero, r);
 		Venta v = new Venta(r, dinero, dineroDevolver);
 		informeVentas.add(generarInformeVenta(v));
 		return dinero - r.getPrecio();
 	}
 	
+	private void calcularCambio(int dinero, Refresco r) {
+		this.cambio = (dinero > r.getPrecio())
+				? -- dinero - r.getPrecio()
+				: ++ dinero - r.getPrecio();
+	}
+
 	private String generarInformeVenta(Venta v) {
 		Refresco r = v.getRefrescoVendido();
 		return v.getDineroDevuelto() == 0
@@ -61,6 +63,10 @@ public class MaquinaExpendedora {
 
 	public int getCambio() {
 		return cambio;
+	}
+	
+	public Refresco getRefresco(int x) {
+		return refrescos.getRefrescos()[x];
 	}
 	
 	public ArrayList<String> mostrarInformeVenta() {

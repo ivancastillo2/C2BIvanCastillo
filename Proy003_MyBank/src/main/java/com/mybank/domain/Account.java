@@ -29,22 +29,23 @@ public class Account {
 	 * @param amt Cantidad de dinero que quieres depositar en la cuenta bancaria.
 	 * @return True si a operación se ha realizado con exito.
 	 */
-	public boolean deposit(double amt) {
+	public void deposit(double amt) {
 		balance += amt;
-		return true;
 	}
 	
 	/**
 	 * Método que sirve para sacar dinero de la cuenta bancaria.
 	 * @param amt Cantidad de dinero que quieres depositar en la cuenta bancaria.
 	 * @return True si la operación se ha realizado con exite, False si ha habido algun error durante la operación.
+	 * @throws OverdraftException 
 	 */
-	public boolean withdraw(double amt) {
+	public void withdraw(double amt) throws OverdraftException {
 		if(amt > balance) {
-			return false;
+			double deficit = amt - balance;
+			throw new OverdraftException("Estas intentando sacar más dinero del que tienes", deficit);
 		}
 		balance -= amt;
-		return true;
+		
 	}
 
 

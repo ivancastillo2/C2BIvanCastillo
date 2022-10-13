@@ -133,12 +133,12 @@ public class Refresco {
 		}
 	}
 	
-	void incrementarStock() {
+	protected void incrementarStock() {
 		this.stock += 1;
 		comprobarStock();
 	}
 	
-	void disminuirStock() throws RefrescoException {
+	protected void disminuirStock() throws RefrescoException {
 		if (stock == 0) {
 			throw new RefrescoException("El stock del refresco no puede ser negativo");
 		}
