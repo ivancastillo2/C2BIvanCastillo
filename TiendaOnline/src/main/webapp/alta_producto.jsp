@@ -18,7 +18,7 @@
 <title>Alta</title>
 </head>
 <body>
-
+	<p>Usuario: ${sessionScope.nombre}</p>
 	<h1>Tienda Online</h1>
 	<h4>Alta de un producto Nuevo</h4>
 

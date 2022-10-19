@@ -19,12 +19,32 @@
 <title>lista</title>
 </head>
 <body>
+	<p>Usuario: ${sessionScope.nombre}</p>
 	<h1>Tienda Online</h1>
 	<h4>Lista de productos</h4>
-	<ul>
-	<c:forEach var="producto" items="${requestScope.lista}">
-		<li> ${producto.idProducto} - ${producto.descripcion} </li>
-	</c:forEach>
-	</ul>
+	<table>
+		<div class="border border-warning">
+			${requestScope.mensaje}
+		</div>
+		<c:forEach var="producto" items="${requestScope.lista}">
+			<tr>
+				<td>${producto.idProducto}.</td>
+				<td>${producto.descripcion}</td>
+				<td>${producto.precio}</td>
+				<td>${producto.stock}</td>
+				<td><a href="comprar?id=${producto.idProducto}">Comprar producto</a></td>
+			</tr>
+		</c:forEach>
+	</table>
+	<form action="comprar" method="get">
+			<label for="select_producto">Producto:</label>
+			<select name="id" id="id">
+			<c:forEach var="producto" items="${requestScope.lista}">
+				<option value="${producto.idProducto}">${producto.descripcion}</option>
+			</c:forEach>
+			</select>
+			Cantidad: <input type="number" name="cantidad" id="cantidad" value="1"/>
+			<button type="submit" class="btn btn-primary">Comprar</button>
+	</form>
 </body>
 </html>

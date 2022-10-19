@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page isELIgnored="false"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,11 +23,14 @@
 		Nombre usuario: <input type="text" name="nombre" value="" /> 
 		<br />
 		Roll: 
-		<select name="select-1" id="select-1">
+		<select name="roll" id="select-1">
 			<option value="admin">Admin</option>
 			<option value="cliente">Cliente</option>
 		</select>
 		<button type="submit" class="btn btn-primary">Grabar</button>
 	</form>
+	<div class="border border-warning">
+		${requestScope.error}
+	</div>
 </body>
 </html>
