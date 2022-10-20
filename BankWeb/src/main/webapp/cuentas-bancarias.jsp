@@ -27,6 +27,18 @@
 		</c:if>
 	</c:forEach>
 	</table>
+	<h2>Añadir cuentas: </h2>
+	<form action="crear" method="get">
+		<br/>
+		<input type="hidden" name="id" value="${requestScope.id}"/>
+		Saldo cuenta:<input type="number" name="saldo" value="" />
+		
+		<button type="submit" class="btn btn-primary">Crear Cuenta</button>
+	</form>
+	<div class="border border-warning">
+			${requestScope.mensaje}
+	</div>
+	<a class="btn btn-primary" href="banco" role="button">Volver</a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>

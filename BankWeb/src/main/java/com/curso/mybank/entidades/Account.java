@@ -5,7 +5,7 @@ public class Account {
 	protected Integer id;
     protected double balance;
     
-    protected Account(double initBalance) {
+    public Account(double initBalance) {
         balance = initBalance;
     }
     

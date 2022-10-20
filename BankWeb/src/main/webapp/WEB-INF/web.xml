@@ -14,7 +14,13 @@
   	<servlet-name>cuentas</servlet-name>
   	<display-name>cuentas</display-name>
   	<description></description>
-  	<servlet-class>com.curso.mybank.services.AccountServlet</servlet-class>
+  	<servlet-class>com.curso.mybank.web.AccountServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>crear</servlet-name>
+  	<display-name>crear</display-name>
+  	<description></description>
+  	<servlet-class>com.curso.mybank.web.CreateAccountServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>banco</servlet-name>
@@ -23,5 +29,9 @@
   <servlet-mapping>
   	<servlet-name>cuentas</servlet-name>
   	<url-pattern>/cuentas</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>crear</servlet-name>
+  	<url-pattern>/crear</url-pattern>
   </servlet-mapping>
 </web-app>
