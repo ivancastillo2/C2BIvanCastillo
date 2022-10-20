@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.curso.mybank.entidades.Account;
+import com.curso.mybank.entidades.SavingsAccount;
 import com.curso.mybank.services.BankService;
 import com.curso.mybank.services.exceptions.BankException;
 
@@ -34,7 +34,7 @@ public class CreateAccountServlet extends HttpServlet {
 		}
 		String msj = "";
 		try {
-			bankService.añadirCuenta(id, new Account(saldo));
+			bankService.añadirCuenta(id, new SavingsAccount(saldo, 0));
 			msj = "Cuenta añadida con exito";
 		} catch (BankException e) {
 			msj = e.getMessage();
