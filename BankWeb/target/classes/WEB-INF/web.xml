@@ -1,0 +1,37 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>banco</servlet-name>
+  	<display-name>banco</display-name>
+  	<description></description>
+  	<servlet-class>com.curso.mybank.web.BankServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>cuentas</servlet-name>
+  	<display-name>cuentas</display-name>
+  	<description></description>
+  	<servlet-class>com.curso.mybank.web.AccountServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>crear</servlet-name>
+  	<display-name>crear</display-name>
+  	<description></description>
+  	<servlet-class>com.curso.mybank.web.CreateAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>banco</servlet-name>
+  	<url-pattern>/banco</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>cuentas</servlet-name>
+  	<url-pattern>/cuentas</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>crear</servlet-name>
+  	<url-pattern>/crear</url-pattern>
+  </servlet-mapping>
+</web-app>

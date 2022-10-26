@@ -26,4 +26,16 @@ public class UsuarioMemoryDAO implements GenericDAO<Usuario>{
 		return null;
 	}
 
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(Usuario entidad) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
