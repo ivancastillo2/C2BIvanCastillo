@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -21,6 +22,9 @@ public class Record implements Serializable {
 	
 	@Column(name="RECORD_NAME")
 	private String name;
+	
+	@OneToOne(mappedBy="record")
+	private Customer customer;
 	
 	public Record() {
 		
@@ -46,6 +50,14 @@ public class Record implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+	
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	@Override

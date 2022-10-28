@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.curso.mercado.entidades.Producto;
 import com.curso.mercado.persistencia.GenericDAO;
-import com.curso.mercado.persistencia.ProductoInMemoryDAO;
+import com.curso.mercado.persistencia.ProductJPADAO;
 import com.curso.mercado.servicios.excepciones.VentasException;
 
 public class VentasService {
 
-	private GenericDAO<Producto> productoDAO = new ProductoInMemoryDAO();
+	private GenericDAO<Producto> productoDAO = new ProductJPADAO();
 	
 	public void comprarProducto(int id, int cantidad) throws VentasException {
 		Producto pAVender = productoDAO.getByID(id);
@@ -19,6 +19,14 @@ public class VentasService {
 		
 		if(pAVender.getStock() < cantidad) {
 			throw new VentasException("Error en la venta: No hay stock suficiente");
+		}
+		
+		if(cantidad < 0) {
+			throw new VentasException("Error en la venta: No puedes comprar una cantidad negativa");
+		}
+		
+		if(cantidad == 0 ) {
+			throw new VentasException("Error en la venta: No puedes comprar cero unidades");
 		}
 		
 		pAVender.setStock(pAVender.getStock() - cantidad);

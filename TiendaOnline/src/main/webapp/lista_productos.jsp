@@ -33,6 +33,12 @@
 				<td>${producto.precio}</td>
 				<td>${producto.stock}</td>
 				<td><a href="comprar?id=${producto.idProducto}">Comprar producto</a></td>
+				<c:if test="${sessionScope.roll == 'admin'}">
+    				<td><a class="btn btn-primary" href="editar?id=${producto.idProducto}" role="button">Modificar</a><td>
+				</c:if>
+				<c:if test="${sessionScope.roll == 'admin'}">
+    				<td><a class="btn btn-primary" href="borrar?id=${producto.idProducto}" role="button">Borrar</a><td>
+				</c:if>
 			</tr>
 		</c:forEach>
 	</table>

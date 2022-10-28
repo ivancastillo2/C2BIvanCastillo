@@ -30,6 +30,24 @@
   	<description></description>
   	<servlet-class>com.curso.mercado.web.ListaProductosServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>borrar</servlet-name>
+  	<display-name>borrar</display-name>
+  	<description></description>
+  	<servlet-class>com.curso.mercado.web.BorrarProductoServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>editar</servlet-name>
+  	<display-name>editar</display-name>
+  	<description></description>
+  	<servlet-class>com.curso.mercado.web.EditarServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>modificar</servlet-name>
+  	<display-name>modificar</display-name>
+  	<description></description>
+  	<servlet-class>com.curso.mercado.web.ModificarServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AltaProductoServlet</servlet-name>
   	<url-pattern>/altaProducto</url-pattern>
@@ -49,6 +67,18 @@
   <servlet-mapping>
   	<servlet-name>lista</servlet-name>
   	<url-pattern>/lista</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>borrar</servlet-name>
+  	<url-pattern>/borrar</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>editar</servlet-name>
+  	<url-pattern>/editar</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>modificar</servlet-name>
+  	<url-pattern>/modificar</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
   	<welcome-file>login.jsp</welcome-file>

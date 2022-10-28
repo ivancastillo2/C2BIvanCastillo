@@ -43,6 +43,10 @@ public class AltaProductoServlet extends HttpServlet {
 			precio = Double.parseDouble(paramPrecio);
 		}
 		
+		if (precio < 0) {
+			msgError = "El precio no puede ser negativo";
+		}
+		
 		if(msgError.length() > 0) {
 			System.out.println("fallo " + msgError);
 			

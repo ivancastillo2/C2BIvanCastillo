@@ -25,6 +25,10 @@ public class PruebaOneToOne {
 		Customer c2 = em.find(Customer.class, c.getId());
 		
 		System.out.println(c2.toString() + c2.getRecord().toString());
+		
+		Record r2 = em.find(Record.class, 23);
+		
+		System.out.println(r2.toString() + r2.getCustomer().toString());
 	}
 	
 }
