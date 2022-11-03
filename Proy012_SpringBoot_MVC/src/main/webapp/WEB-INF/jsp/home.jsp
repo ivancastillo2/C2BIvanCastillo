@@ -14,7 +14,7 @@
 rol: ${usuario.rol }
 
 <c:if test="${usuario.rol eq 'cliente'}">
-	<a href="pedidos/${usuario.nombre }">Listar mis pedidos</a>
+	<a href="pedidos">Listar mis pedidos</a>
 </c:if>
 <c:if test="${usuario.rol eq 'admin'}">
 	<a href="pedidos">Listar todos los pedidos</a>
