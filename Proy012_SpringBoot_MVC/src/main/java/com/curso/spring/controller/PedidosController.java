@@ -45,7 +45,7 @@ public class PedidosController {
 //		return "pedidos";
 //	}
 	
-	@GetMapping(value={"/pedido", "/pedidos/pedido"})
+	@GetMapping("/pedido")
 	public String verDetallesProducto(Model model,
 						@RequestParam("idPedido") Optional<Integer> id) {
 		Integer idPedido = id.orElse(null);
@@ -56,7 +56,7 @@ public class PedidosController {
 		return "detalle-pedido";
 	}
 	
-	@PostMapping(value={"/altaProducto", "/pedidos/altaProducto"})
+	@PostMapping("/altaProducto")
 	public String altaProducto(Model model,
 				@ModelAttribute("pedidoForm") @Valid Pedido p,
 				BindingResult bindingResult) {
@@ -75,7 +75,7 @@ public class PedidosController {
 		return "redirect:/pedidos";
 	}
 	
-	@GetMapping(value= {"/borrar", "/pedidos/borrar"})
+	@GetMapping("/borrar")
 	public String borrarProducto(Model model,
 					@RequestParam("idPedido") Optional<Integer> id) {
 		Integer idPedido = id.orElse(null);
@@ -85,9 +85,7 @@ public class PedidosController {
 		pedidoService.borrarPedido(idPedido);
 		
 		Usuario u = (Usuario) model.getAttribute("usuario");
-		return (u.getRol().equals("cliente"))
-				? "redirect:/pedidos/" + u.getNombre()
-				: "redirect:/pedidos";
+		return "redirect:/pedidos";
 	}
 	
 	private Collection<Pedido> conseguirLista(Model model) {
