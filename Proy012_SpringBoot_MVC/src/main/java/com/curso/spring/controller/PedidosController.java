@@ -45,7 +45,7 @@ public class PedidosController {
 		return "pedidos";
 	}
 	
-	@GetMapping("/pedido")
+	@GetMapping(value={"/pedido", "/pedidos/pedido"})
 	public String verDetallesProducto(Model model,
 						@RequestParam("idPedido") Optional<Integer> id) {
 		Integer idPedido = id.orElse(null);
@@ -73,6 +73,21 @@ public class PedidosController {
 		p.setFechaPedido(new Date());
 		pedidoService.generarPedido(p);
 		
+		return (u.getRol().equals("cliente"))
+				? "redirect:/pedidos/" + u.getNombre()
+				: "redirect:/pedidos";
+	}
+	
+	@GetMapping(value= {"/borrar", "/pedidos/borrar"})
+	public String borrarProducto(Model model,
+					@RequestParam("idPedido") Optional<Integer> id) {
+		Integer idPedido = id.orElse(null);
+		if(id.isEmpty()) {
+			return "redirect:/pedidos";
+		}
+		pedidoService.borrarPedido(idPedido);
+		
+		Usuario u = (Usuario) model.getAttribute("usuario");
 		return (u.getRol().equals("cliente"))
 				? "redirect:/pedidos/" + u.getNombre()
 				: "redirect:/pedidos";

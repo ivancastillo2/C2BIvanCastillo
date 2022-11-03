@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.curso.spring.entidades.Pedido;
+import com.curso.spring.repositorio.PedidoJPARepository;
 import com.curso.spring.repositorio.PedidoRepository;
 
 @Service
@@ -18,9 +19,12 @@ public class PedidoServiceImp implements PedidosService {
 
 	private static Logger log = LoggerFactory.getLogger(PedidoServiceImp.class);
 	
+//	@Autowired
+//	@Qualifier("pedidoRepo")
+//	private PedidoRepository repo;
+	
 	@Autowired
-	@Qualifier("pedidoRepo")
-	private PedidoRepository repo;
+	private PedidoJPARepository repo;
 	
 	public PedidoServiceImp() {
 		log.info("--- instanciando PedidoServiceImp " + repo);
@@ -35,20 +39,31 @@ public class PedidoServiceImp implements PedidosService {
 	@Override
 	public void generarPedido(Pedido p) {
 		log.info("gestiono un pedido");
-		repo.add(p);
+//		repo.add(p);
+		repo.saveAndFlush(p);
 		
 	}
 
 	@Override
 	public Collection<Pedido> getPedidos(String user) {
+//		return (user == null)
+//				? repo.getAll()
+//				: repo.getPedidosByUser(user);
 		return (user == null)
-				? repo.getAll()
-				: repo.getPedidosByUser(user);
+				? repo.findAll()
+				: repo.findByUser(user);
 	}
 
 	@Override
 	public Pedido getPedido(Integer id) {
-		return repo.getById(id);
+		return repo.getReferenceById(id);
 	}
 
+	@Override
+	public void borrarPedido(Integer id) {
+		repo.deleteById(id);		
+	}
+
+	
+	
 }

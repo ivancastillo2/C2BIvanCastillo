@@ -4,9 +4,20 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Entity
+@Table(name="PEDIDOS")
 public class Pedido implements Serializable{
 
 	/**
@@ -14,12 +25,24 @@ public class Pedido implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PED_SEQ")
+	@SequenceGenerator(sequenceName = "PEDIDO_SEQ", name = "PED_SEQ", allocationSize=1)	
 	private Integer id;
+	
+	@Column(name="USUARIO")
 	private String user;
+	
 	@NotNull
 	@Size(min=5)
+	@Column(name="DESCRIPCION")
 	private String desc;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="FECHA_PEDIDO")
 	private Date fechaPedido;
+	
+	@Column(name="ENTREGADO")
 	private boolean entregado;
 	
 	public Pedido() {

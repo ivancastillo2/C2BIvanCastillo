@@ -12,16 +12,22 @@
 <body>
 
 	<h1>Lista pedidos</h1>
-	
+	<hr/>
 	<ul>
 		<c:forEach items="${listaPedidos}" var="pedido">
 			<li>${pedido.id} - ${pedido.desc}
 			
 				<a href="pedido?idPedido=${pedido.id}">Ver detalles</a>
+				<c:if test="${usuario.rol eq 'admin'}">
+					<a href="borrar?idPedido=${pedido.id}">Borrar</a>
+				</c:if>
 			
 			</li>
 		</c:forEach>
 	</ul>
+	<hr/>
+	<h3>Alta Producto</h3>
+	<hr/>
 	<form:form action="altaProducto" method="post" modelAttribute="pedidoForm">
 		<form:label path="desc">Descripción:</form:label>
 		<form:input path="desc"/>
