@@ -1,6 +1,7 @@
 package com.curso.spring.servicios;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -9,12 +10,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.curso.spring.entidades.Pedido;
 import com.curso.spring.repositorio.PedidoJPARepository;
 import com.curso.spring.repositorio.PedidoRepository;
 
 @Service
+@Transactional(propagation = Propagation.REQUIRED)
 public class PedidoServiceImp implements PedidosService {
 
 	private static Logger log = LoggerFactory.getLogger(PedidoServiceImp.class);
@@ -37,14 +41,15 @@ public class PedidoServiceImp implements PedidosService {
 	}
 	
 	@Override
-	public void generarPedido(Pedido p) {
+	public Pedido generarPedido(Pedido p) {
 		log.info("gestiono un pedido");
 //		repo.add(p);
-		repo.saveAndFlush(p);
+		return repo.save(p);
 		
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Collection<Pedido> getPedidos(String user) {
 //		return (user == null)
 //				? repo.getAll()
@@ -55,8 +60,8 @@ public class PedidoServiceImp implements PedidosService {
 	}
 
 	@Override
-	public Pedido getPedido(Integer id) {
-		return repo.getReferenceById(id);
+	public Optional<Pedido> getPedido(Integer id) {
+		return repo.findById(id);
 	}
 
 	@Override
@@ -64,6 +69,10 @@ public class PedidoServiceImp implements PedidosService {
 		repo.deleteById(id);		
 	}
 
-	
+	@Override
+	public Pedido modificar(Pedido p) {
+		repo.save(p);
+		return p;
+	}
 	
 }

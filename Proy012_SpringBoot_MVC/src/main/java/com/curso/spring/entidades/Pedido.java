@@ -23,7 +23,12 @@ public class Pedido implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -6776467034836679548L;
+
+	/**
+	 * 
+	 */
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PED_SEQ")
