@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.curso.spring.entidades.Pedido;
 import com.curso.spring.entidades.Usuario;
+import com.curso.spring.excepciones.PedidosException;
 import com.curso.spring.servicios.PedidosService;
 
 @Controller
@@ -79,7 +80,7 @@ public class PedidosController {
 	
 	@GetMapping("/borrar")
 	public String borrarProducto(Model model,
-					@RequestParam("idPedido") Optional<Integer> id) {
+					@RequestParam("idPedido") Optional<Integer> id) throws PedidosException {
 		Integer idPedido = id.orElse(null);
 		if(id.isEmpty()) {
 			return "redirect:/pedidos";
